@@ -25,19 +25,24 @@ let currentSortOrder = 'asc'; // 'asc' oppure 'desc'
 function renderBooks() {
   // TODO:
   // - partire dall'array books ✅
-  // - applicare filtro per titolo (currentSearch)
+  // - applicare filtro per titolo (currentSearch) ✅
   // - applicare filtro per categoria (currentCategory)
   // - ordinare per anno in base a currentSortOrder
-  // - svuotare il contenitore bookList
+  // - svuotare il contenitore bookList ✅
   // - creare e appendere gli <li> per ogni libro risultante
   // - aggiornare il countSpan
   // - mostrare/nascondere emptyMessage se non ci sono risultati
 
+
+
+  const filteredBooks = books.filter(book => book.title.toLowerCase().includes(currentSearch.toLowerCase()))
+
   bookList.innerHTML = ""
-  books.forEach(book => {
+  filteredBooks.forEach(book => {
     const { title, author, category, year } = book
     bookList.innerHTML += `<li> titolo: ${title}, autore: ${author}, categoria: ${category}, anno: ${year}</li>`
   })
+
 
 }
 
@@ -48,6 +53,10 @@ searchInput.addEventListener('input', function () {
   // TODO:
   // - aggiornare currentSearch con il valore dell'input (in minuscolo)
   // - richiamare renderBooks()
+
+  currentSearch = searchInput.value
+
+  renderBooks()
 });
 
 // 6. Gestione eventi: filtri categoria
