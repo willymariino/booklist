@@ -1,13 +1,54 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>booklist</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lista Libri – Esercizio DOM & Array</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+  <main class="app">
+    <h1>Lista Libri</h1>
+
+    <section class="controls">
+      <div class="control-group">
+        <label for="search">Cerca per titolo:</label>
+        <input type="text" id="search" placeholder="Digita parte del titolo...">
+      </div>
+
+      <div class="control-group">
+        <span>Categoria:</span>
+        <button class="btn-filter active" data-category="all">Tutti</button>
+        <button class="btn-filter" data-category="Frontend">Frontend</button>
+        <button class="btn-filter" data-category="Backend">Backend</button>
+        <button class="btn-filter" data-category="Altro">Altro</button>
+      </div>
+
+      <div class="control-group">
+        <button id="sortYear" data-order="asc">
+          Ordina per anno ↑
+        </button>
+      </div>
+    </section>
+
+    <section class="summary">
+      <p>
+        Libri trovati: <span id="count">0</span>
+      </p>
+    </section>
+
+    <section class="list-container">
+      <ul id="bookList" class="book-list">
+        <!-- Gli elementi <li> verranno inseriti via JavaScript -->
+      </ul>
+      <p id="emptyMessage" class="empty-message hidden">
+        Nessun libro trovato con i filtri correnti.
+      </p>
+    </section>
+  </main>
+
+  <script src="./src/main.js"></script>
+</body>
+
 </html>
