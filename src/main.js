@@ -1,60 +1,63 @@
-import './style.css'
-import javascriptLogo from './assets/javascript.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { setupCounter } from './counter.js'
+// 1. Dati di partenza: array di oggetti libro
+const books = [
+  { id: 1, title: 'JavaScript Moderno', author: 'Mario Rossi', year: 2020, category: 'Frontend' },
+  { id: 2, title: 'Introduzione a HTML & CSS', author: 'Luisa Bianchi', year: 2018, category: 'Frontend' },
+  { id: 3, title: 'Node.js per principianti', author: 'Giovanni Verdi', year: 2021, category: 'Backend' },
+  { id: 4, title: 'Database con SQL', author: 'Anna Neri', year: 2017, category: 'Backend' },
+  { id: 5, title: 'Git e GitHub Essentials', author: 'Sara Blu', year: 2019, category: 'Altro' },
+  { id: 6, title: 'Pattern di progettazione web', author: 'Luigi Gialli', year: 2022, category: 'Altro' }
+];
 
-document.querySelector('#app').innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${javascriptLogo}" class="framework" alt="JavaScript logo"/>
-    <img src=${viteLogo} class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.js</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+// 2. Riferimenti agli elementi del DOM
+const searchInput = document.getElementById('search');
+const filterButtons = document.querySelectorAll('.btn-filter');
+const sortButton = document.getElementById('sortYear');
+const bookList = document.getElementById('bookList');
+const countSpan = document.getElementById('count');
+const emptyMessage = document.getElementById('emptyMessage');
 
-<div class="ticks"></div>
+// 3. Stato corrente dei filtri
+let currentSearch = '';
+let currentCategory = 'all';
+let currentSortOrder = 'asc'; // 'asc' oppure 'desc'
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src=${viteLogo} alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-          <img class="button-icon" src="${javascriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+// 4. Funzione principale di render
+function renderBooks() {
+  // TODO:
+  // - partire dall'array books
+  // - applicare filtro per titolo (currentSearch)
+  // - applicare filtro per categoria (currentCategory)
+  // - ordinare per anno in base a currentSortOrder
+  // - svuotare il contenitore bookList
+  // - creare e appendere gli <li> per ogni libro risultante
+  // - aggiornare il countSpan
+  // - mostrare/nascondere emptyMessage se non ci sono risultati
+}
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+// 5. Gestione eventi: ricerca
+searchInput.addEventListener('input', function () {
+  // TODO:
+  // - aggiornare currentSearch con il valore dell'input (in minuscolo)
+  // - richiamare renderBooks()
+});
 
-setupCounter(document.querySelector('#counter'))
+// 6. Gestione eventi: filtri categoria
+filterButtons.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    // TODO:
+    // - aggiornare currentCategory leggendo data-category
+    // - aggiornare la classe 'active' sui pulsanti
+    // - richiamare renderBooks()
+  });
+});
+
+// 7. Gestione eventi: ordinamento per anno
+sortButton.addEventListener('click', function () {
+  // TODO:
+  // - toggle tra 'asc' e 'desc' in currentSortOrder
+  // - aggiornare il testo del bottone (↑ / ↓)
+  // - richiamare renderBooks()
+});
+
+// 8. Prima renderizzazione
+renderBooks();
