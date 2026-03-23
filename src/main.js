@@ -24,7 +24,7 @@ let currentSortOrder = 'asc'; // 'asc' oppure 'desc'
 // 4. Funzione principale di render
 function renderBooks() {
   // TODO:
-  // - partire dall'array books
+  // - partire dall'array books ✅
   // - applicare filtro per titolo (currentSearch)
   // - applicare filtro per categoria (currentCategory)
   // - ordinare per anno in base a currentSortOrder
@@ -32,7 +32,16 @@ function renderBooks() {
   // - creare e appendere gli <li> per ogni libro risultante
   // - aggiornare il countSpan
   // - mostrare/nascondere emptyMessage se non ci sono risultati
+
+  bookList.innerHTML = ""
+  books.forEach(book => {
+    const { title, author, category, year } = book
+    bookList.innerHTML += `<li> titolo: ${title}, autore: ${author}, categoria: ${category}, anno: ${year}</li>`
+  })
+
 }
+
+
 
 // 5. Gestione eventi: ricerca
 searchInput.addEventListener('input', function () {
