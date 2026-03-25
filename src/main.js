@@ -26,7 +26,7 @@ function renderBooks() {
   // TODO:
   // - partire dall'array books ✅
   // - applicare filtro per titolo (currentSearch) ✅
-  // - applicare filtro per categoria (currentCategory)
+  // - applicare filtro per categoria (currentCategory) ✅
   // - ordinare per anno in base a currentSortOrder
   // - svuotare il contenitore bookList ✅
   // - creare e appendere gli <li> per ogni libro risultante
@@ -34,14 +34,20 @@ function renderBooks() {
   // - mostrare/nascondere emptyMessage se non ci sono risultati
 
 
+  // prende l'elenco generale e restituisce un array di titoli che rispettano la condizione (searchbar)
+  let filteredBooks = books.filter(book => book.title.toLowerCase().includes(currentSearch.toLowerCase()))
 
-  const filteredBooks = books.filter(book => book.title.toLowerCase().includes(currentSearch.toLowerCase()))
+  // prende l'elenco già filtrato per titolo e se necessario filtra anche per categoria (bottoni)
+  if (currentCategory != "all") {
+    filteredBooks = filteredBooks.filter(book => book.category === currentCategory)
+  }
 
   bookList.innerHTML = ""
   filteredBooks.forEach(book => {
     const { title, author, category, year } = book
     bookList.innerHTML += `<li> titolo: ${title}, autore: ${author}, categoria: ${category}, anno: ${year}</li>`
   })
+
 
 
 }
@@ -66,6 +72,13 @@ filterButtons.forEach(function (btn) {
     // - aggiornare currentCategory leggendo data-category
     // - aggiornare la classe 'active' sui pulsanti
     // - richiamare renderBooks()
+    // console.log(e.target.dataset.category)
+    // currentCategory = e.target.dataset.category // mettendo come parametro dell'event listener
+    currentCategory = btn.dataset.category
+    const prevButton = document.querySelector(".active")
+    prevButton.classList.remove("active")
+    btn.classList.add("active")
+    renderBooks()
   });
 });
 
