@@ -15,6 +15,7 @@ const sortButton = document.getElementById('sortYear');
 const bookList = document.getElementById('bookList');
 const countSpan = document.getElementById('count');
 const emptyMessage = document.getElementById('emptyMessage');
+const arrow = document.getElementById("arrow")
 
 // 3. Stato corrente dei filtri
 let currentSearch = '';
@@ -27,11 +28,11 @@ function renderBooks() {
   // - partire dall'array books ✅
   // - applicare filtro per titolo (currentSearch) ✅
   // - applicare filtro per categoria (currentCategory) ✅
-  // - ordinare per anno in base a currentSortOrder
+  // - ordinare per anno in base a currentSortOrder ✅
   // - svuotare il contenitore bookList ✅
-  // - creare e appendere gli <li> per ogni libro risultante
-  // - aggiornare il countSpan
-  // - mostrare/nascondere emptyMessage se non ci sono risultati
+  // - creare e appendere gli <li> per ogni libro risultante ✅
+  // - aggiornare il countSpan ✅
+  // - mostrare/nascondere emptyMessage se non ci sono risultati ✅
 
 
   // prende l'elenco generale e restituisce un array di titoli che rispettano la condizione (searchbar)
@@ -42,6 +43,22 @@ function renderBooks() {
     filteredBooks = filteredBooks.filter(book => book.category === currentCategory)
   }
 
+  // ordinamento per anno in base al contenuto di currentSortOrder
+  filteredBooks.sort((a, b) => (currentSortOrder === "asc") ? a.year - b.year : b.year - a.year);
+
+  countSpan.innerText = filteredBooks.length
+
+  if (filteredBooks.length === 0) { // if (!filtereBooks.length){
+
+    emptyMessage.classList.remove("hidden")
+  }
+  else {
+    emptyMessage.classList.add("hidden")
+  }
+
+
+
+  // crea l'elenco dei libri in pagina
   bookList.innerHTML = ""
   filteredBooks.forEach(book => {
     const { title, author, category, year } = book
@@ -88,6 +105,19 @@ sortButton.addEventListener('click', function () {
   // - toggle tra 'asc' e 'desc' in currentSortOrder
   // - aggiornare il testo del bottone (↑ / ↓)
   // - richiamare renderBooks()
+
+
+  if (currentSortOrder === "asc") {
+    currentSortOrder = "desc"
+    arrow.innerText = "↑"
+  }
+  else {
+    currentSortOrder = "asc"
+    arrow.innerText = "↓"
+  }
+
+  renderBooks()
+
 });
 
 // 8. Prima renderizzazione
